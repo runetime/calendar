@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel='stylesheet' href='/app.css'>
-    <script src='/vendor/jquery.js'></script>
+    <link rel='stylesheet' href='app.css'>
+    <script src='vendor/jquery.js'></script>
   </head>
   <body>
     <table can-edit='<?=$canEdit ? 'y' : 'n'; ?>'>

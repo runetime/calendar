@@ -1,0 +1,13 @@
+table {
+    width: 100%;
+}
+
+table[can-edit='y'] td span {
+    cursor: pointer;
+}
+
+td,
+th {
+    text-align: center;
+    width: 12.5%;
+}

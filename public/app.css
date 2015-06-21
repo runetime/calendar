@@ -1,4 +1,5 @@
 table {
+    font-family: Helvetica, Arial;
     width: 100%;
 }
 
@@ -6,7 +7,8 @@ table[can-edit='y'] td span {
     cursor: pointer;
 }
 
-tr.active-hour {
+tr.active-hour td span {
+    color: #ffffff !important;
     font-weight: bold;
 }
 
@@ -14,6 +16,11 @@ td,
 th {
     text-align: center;
     width: 12.5%;
+}
+
+td.current-hour {
+    background: orange;
+    color: #ffffff;
 }
 
 h3 {
@@ -30,7 +37,7 @@ div.center-block {
 
 /* Text colour */
 th {
-    color: red;
+    color: orange;
 }
 
 td {

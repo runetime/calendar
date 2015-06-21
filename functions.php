@@ -108,7 +108,7 @@ function getHours() {
         $hours[$i] = [];
 
         for ($j = 0; $j < 7; $j++) {
-            $hours[$i][$j] = '--';
+            $hours[$i][$j] = '';
         }
     }
 

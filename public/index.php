@@ -17,8 +17,6 @@ if (isset($_GET['user'])) {
 $user = encrypter('decrypt', $userEncrypted);
 $canEdit = canEdit($level);
 
-$hours = getHours();
-
 $currentHour = date('H');
 
 $monday = date('jS', strtotime('last monday'));
@@ -36,6 +34,7 @@ if (date('N') == 7) {
     $sundayMonth = date('M');
 }
 
+$week = date('W');
 $year = date('Y');
 
 require(__DIR__ . '/../views/calendar.php');

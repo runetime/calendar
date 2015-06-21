@@ -6,6 +6,10 @@ table[can-edit='y'] td span {
     cursor: pointer;
 }
 
+tr.bolded {
+    font-weight: bold;
+}
+
 td,
 th {
     text-align: center;

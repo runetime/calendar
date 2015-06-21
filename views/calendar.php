@@ -3,9 +3,10 @@
   <head>
     <link rel='stylesheet' href='app.css'>
     <script src='vendor/jquery.js'></script>
+    <script src='js/calendar.js'></script>
   </head>
   <body>
-    <h3>
+    <h3 id='week-header' data-week='<?=$week;?>'>
       Week of <?=$mondayMonth?> <?=$monday?> - <?=$sundayMonth?> <?=$sunday?>, <?=$year?>
     </h3>
     <table border='1' can-edit='<?=$canEdit ? 'y' : 'n'; ?>'>
@@ -22,73 +23,31 @@
         </tr>
       </thead>
       <tbody>
-<?php foreach ($hours as $hour => $hourInfo): ?>
+<?php for ($i = 0; $i <= 23; $i++): ?>
+  <?php if ($currentHour == $i): ?>
+        <tr class='bolded'>
+  <?php else: ?>
         <tr>
+  <?php endif; ?>
           <td>
-  <?php if ($currentHour == $hour): ?>
-            <b>
-  <?php endif; ?>
-            <?=str_pad($hour, 2, '0', STR_PAD_LEFT); ?>:00
-  <?php if ($currentHour == $hour): ?>
-            </b>
-  <?php endif; ?>
+            <?=str_pad($i, 2, '0', STR_PAD_LEFT); ?>:00
           </td>
-  <?php for ($i = 0; $i <= 6; $i++): ?>
-          <td>
-    <?php if ($currentHour == $hour): ?>
-            <b>
-    <?php endif; ?>
-            <span onclick='claim(this, <?=$hour; ?>, <?=$i; ?>)'><?=$hourInfo[$i]; ?></span>
-    <?php if ($currentHour == $hour): ?>
-            </b>
-    <?php endif; ?>
+  <?php for ($j = 0; $j <= 6; $j++): ?>
+          <td id='<?=$i?>-<?=$j?>'>
           </td>
   <?php endfor; ?>
         </tr>
-<?php endforeach; ?>
+<?php endfor; ?>
       </tbody>
     </table>
     <script>
-      var claim = function (el, hour, day) {
-        var can_edit = <?=$canEdit ? 'true' : 'false'; ?>;
-        var user_encrypted = '<?=$userEncrypted; ?>';
-        var user = '<?=$user; ?>';
-        var level = <?=$level; ?>;
+      var cal = new Calendar();
+      cal.can_edit = <?=$canEdit ? 'true' : 'false'; ?>;
+      cal.user = '<?=$user; ?>';
+      cal.user_encrypted = '<?=$userEncrypted; ?>';
+      cal.level = <?=$level; ?>;
 
-        // If they can't edit, then let's do nothing.
-        if (can_edit === false) {
-          return;
-        }
-
-        var param_list = {
-          day: day,
-          hour: hour,
-          level: level,
-          user: user_encrypted,
-        };
-
-        $.post('claim.php', $.param(param_list))
-          .done(function(data) {
-            switch (data) {
-              case 'D:':
-                alert('There was a server error!');
-
-                break;
-              case ':(':
-                alert('Someone else has already claimed that hour.');
-
-                break;
-              case ':|':
-                $(el).html('--');
-
-                break;
-              case ':)':
-                $(el).html(user);
-
-                break;
-            }
-          });
-      };
+      cal.view($('#week-header').attr('data-week'));
     </script>
   </body>
 </html>

@@ -2,8 +2,8 @@
 <html>
   <head>
     <link rel='stylesheet' href='app.css'>
-    <script src='vendor/jquery.js'></script>
-    <script src='js/calendar.js'></script>
+    <script src='vendor/jquery.js?<?=filemtime('vendor/jquery.js')?>'></script>
+    <script src='js/calendar.js?<?=filemtime('js/calendar.js')?>'></script>
   </head>
   <body>
     <h3 id='week-header'>

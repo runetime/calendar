@@ -6,7 +6,7 @@ table[can-edit='y'] td span {
     cursor: pointer;
 }
 
-tr.bolded {
+tr.active-hour {
     font-weight: bold;
 }
 

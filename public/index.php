@@ -19,6 +19,7 @@ $canEdit = canEdit($level);
 $canEditAll = canEditAll($level);
 
 $currentHour = date('H');
+$currentDay = date('N') - 1;
 $week = date('W');
 
 require(__DIR__ . '/../views/calendar.php');

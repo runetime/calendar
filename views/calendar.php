@@ -25,7 +25,7 @@
       <tbody>
 <?php for ($i = 0; $i <= 23; $i++): ?>
   <?php if ($currentHour == $i): ?>
-        <tr class='bolded'>
+        <tr class='active-hour'>
   <?php else: ?>
         <tr>
   <?php endif; ?>
@@ -33,7 +33,11 @@
             <?=str_pad($i, 2, '0', STR_PAD_LEFT); ?>:00
           </td>
   <?php for ($j = 0; $j <= 6; $j++): ?>
+    <?php if ($currentHour == $i && $currentDay == $j): ?>
+          <td id='<?=$i?>-<?=$j?>' class='current-hour'>
+    <?php else: ?>
           <td id='<?=$i?>-<?=$j?>'>
+    <?php endif; ?>
           </td>
   <?php endfor; ?>
         </tr>

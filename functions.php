@@ -114,7 +114,14 @@ function getHours() {
 
     $weekCurrent = date('W');
 
-    $results = databaseQuery('SELECT `day`, `dj_name`, `hour` FROM `radio_history` WHERE `week`=' . $weekCurrent . ' ORDER BY day,hour ASC');
+    $query = <<<QUERY
+SELECT `day`, `dj_name`, `hour`
+FROM `radio_history`
+WHERE `week`=$weekCurrent
+ORDER BY `day`, `hour` ASC
+QUERY;
+
+    $results = databaseQuery($query);
 
     foreach ($results as $result) {
         $hours[$result->hour][$result->day] = $result->dj_name;

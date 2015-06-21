@@ -24,6 +24,10 @@ h3 span {
     cursor: pointer;
 }
 
+div.center-block {
+    text-align: center;
+}
+
 /* Text colour */
 th {
     color: red;

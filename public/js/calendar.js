@@ -49,8 +49,44 @@ Calendar.prototype.claim = function (el, hour, day) {
     });
 };
 
+Calendar.prototype.clear = function () {
+  // If they can't edit, then let's do nothing.
+  if (this.can_edit === false) {
+    return;
+  }
+
+  var results = confirm('Are you sure you want to clear this week?');
+
+  if (!results) {
+    return;
+  }
+
+  var param_list = {
+    level: this.level,
+    user: this.user_encrypted,
+    week: this.week
+  };
+
+  var self = this;
+
+  $.post('clear.php', $.param(param_list))
+    .done(function(data) {
+      switch (data) {
+        case ':)':
+          self.view(self.week);
+          alert('This week was successfully cleared.');
+
+          break;
+        case ':(':
+          alert('There was an error clearing this week!');
+
+          break;
+      }
+    });
+};
+
 Calendar.prototype.view = function (week) {
-  var info = $.get('view.php?timestamp=' + this.timestamp + '&week=' + week, function (data) {
+  $.get('view.php?timestamp=' + this.timestamp + '&week=' + week, function (data) {
     data = $.parseJSON(data);
     var info = data.info;
 

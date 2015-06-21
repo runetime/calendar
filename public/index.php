@@ -16,6 +16,7 @@ if (isset($_GET['user'])) {
 
 $user = encrypter('decrypt', $userEncrypted);
 $canEdit = canEdit($level);
+$canEditAll = canEditAll($level);
 
 $currentHour = date('H');
 $week = date('W');

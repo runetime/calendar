@@ -40,6 +40,13 @@
 <?php endfor; ?>
       </tbody>
     </table>
+<?php if ($canEditAll): ?>
+    <div class='center-block'>
+      <button onclick='cal.clear();'>
+        Clear Timetable
+      </button>
+    </div>
+<?php endif; ?>
     <script>
       var cal = new Calendar();
       cal.can_edit = <?=$canEdit ? 'true' : 'false'?>;

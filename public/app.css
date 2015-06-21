@@ -49,3 +49,7 @@ td {
 tbody tr td:nth-child(1) {
     color: #80b8ff;
 }
+
+tbody tr.active-hour td:nth-child(1) {
+    font-weight: bold;
+}

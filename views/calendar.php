@@ -6,8 +6,8 @@
     <script src='js/calendar.js'></script>
   </head>
   <body>
-    <h3 id='week-header' data-week='<?=$week;?>'>
-      Week of <?=$mondayMonth?> <?=$monday?> - <?=$sundayMonth?> <?=$sunday?>, <?=$year?>
+    <h3 id='week-header'>
+      <span href='#' onclick='cal.weekPrevious();'>&larr;</span> <span id='header-info'></span> <span href='#' onclick='cal.weekNext();'>&rarr;</span>
     </h3>
     <table border='1' can-edit='<?=$canEdit ? 'y' : 'n'; ?>'>
       <thead>
@@ -43,11 +43,13 @@
     <script>
       var cal = new Calendar();
       cal.can_edit = <?=$canEdit ? 'true' : 'false'; ?>;
+      cal.level = <?=$level; ?>;
+      cal.timestamp = <?=time();?>;
       cal.user = '<?=$user; ?>';
       cal.user_encrypted = '<?=$userEncrypted; ?>';
-      cal.level = <?=$level; ?>;
+      cal.week = <?=$week;?>;
 
-      cal.view($('#week-header').attr('data-week'));
+      cal.view(cal.week);
     </script>
   </body>
 </html>

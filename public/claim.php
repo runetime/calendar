@@ -24,9 +24,11 @@ if (!canEdit($level)) {
 
 $day = $_POST['day'];
 $hour = $_POST['hour'];
+$week = $_POST['week'];
 
 $day = (int) $day;
 $hour = (int) $hour;
+$week = (int) $week;
 
 if ($day > 6 || $day < 0) {
     die('Sorry, that day is not valid.');
@@ -34,6 +36,10 @@ if ($day > 6 || $day < 0) {
 
 if ($hour > 23 || $hour < 0) {
     die('Sorry, that hour is not valid.');
+}
+
+if ($week > 52 || $week < 0) {
+    die('Sorry, that week is not valid.');
 }
 
 // Query error code:
@@ -44,10 +50,6 @@ if ($hour > 23 || $hour < 0) {
 
 $link = mysql_connect(env('DB_HOST'), env('DB_USER'), env('DB_PASS'), env('DB_NAME'));
 mysql_select_db(env('DB_NAME'));
-
-// Set the relevant date information.
-$week = date('W');
-
 
 // Check if the hour has already been claimed.
 $claimedQuery = '

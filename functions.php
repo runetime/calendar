@@ -100,7 +100,7 @@ function env($key) {
     return $value;
 }
 
-function getHours() {
+function getHours($week) {
     $hours = [];
 
     // Set some defaults for those that haven't been claimed.
@@ -112,12 +112,10 @@ function getHours() {
         }
     }
 
-    $weekCurrent = date('W');
-
     $query = <<<QUERY
 SELECT `day`, `dj_name`, `hour`
 FROM `radio_history`
-WHERE `week`=$weekCurrent
+WHERE `week`=$week
 ORDER BY `day`, `hour` ASC
 QUERY;
 

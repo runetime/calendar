@@ -18,23 +18,6 @@ $user = encrypter('decrypt', $userEncrypted);
 $canEdit = canEdit($level);
 
 $currentHour = date('H');
-
-$monday = date('jS', strtotime('last monday'));
-$mondayMonth = date('M', strtotime('last monday'));
-$sunday = date('jS', strtotime('next sunday'));
-$sundayMonth = date('M', strtotime('last monday'));
-
-if (date('N') == 1) {
-    $monday = date('jS');
-    $mondayMonth = date('M');
-}
-
-if (date('N') == 7) {
-    $sunday = date('jS');
-    $sundayMonth = date('M');
-}
-
 $week = date('W');
-$year = date('Y');
 
 require(__DIR__ . '/../views/calendar.php');

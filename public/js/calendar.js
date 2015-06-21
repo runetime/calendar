@@ -2,10 +2,13 @@ var Calendar = function () {
 };
 
 Calendar.prototype.can_edit = false;
-Calendar.prototype.can_edit =  false,
-Calendar.prototype.level =  0,
-Calendar.prototype.user =  '',
-Calendar.prototype.user_encrypted =  '',
+Calendar.prototype.can_edit = false,
+Calendar.prototype.level = 0;
+Calendar.prototype.timestamp = 0;
+Calendar.prototype.user = '';
+Calendar.prototype.user_encrypted = '';
+Calendar.prototype.week = 0;
+
 Calendar.prototype.claim = function (el, hour, day) {
   // If they can't edit, then let's do nothing.
   if (this.can_edit === false) {
@@ -17,6 +20,8 @@ Calendar.prototype.claim = function (el, hour, day) {
     hour: hour,
     level: this.level,
     user: this.user_encrypted,
+    timestamp: this.timestamp,
+    week: this.week
   };
 
   var self = this;
@@ -45,19 +50,45 @@ Calendar.prototype.claim = function (el, hour, day) {
 };
 
 Calendar.prototype.view = function (week) {
-  var info = $.get('view.php?week=' + week, function (data) {
+  var info = $.get('view.php?timestamp=' + this.timestamp + '&week=' + week, function (data) {
     data = $.parseJSON(data);
+    var info = data.info;
 
-    $.each(data, function (day, hours) {
+    $.each(data.hours, function (day, hours) {
       $.each(hours, function (hour, dj) {
-        var selector = $('#' + day + '-' + hour);
+        var selector = $('#' + day + '-' + hour),
+            cell_name = '--';
 
-        if (dj.length == 0) {
-          $(selector).html('--');
-        } else {
-          $(selector).html(dj);
+        if (dj.length > 0) {
+          cell_name = dj;
         }
+
+        var cell = "<span onclick='cal.claim(this, " + day + ", " + hour + ")'>";
+        cell += cell_name;
+        cell += "</span>";
+
+        $(selector).html(cell);
+
+        // Week of <?=$mondayMonth?> <?=$monday?> - <?=$sundayMonth?> <?=$sunday?>, <?=$year?>
+        var header = 'Week of ' + info.monday_month + ' ' + info.monday;
+        header += ' - ';
+        header += info.sunday_month + ' ' + info.sunday;
+        header += ', ' + info.year;
+
+        $('#header-info').html(header);
       });
     });
   });
-}
+};
+
+Calendar.prototype.weekPrevious = function () {
+  this.timestamp -= (86400 * 7);
+  this.week -= 1;
+  this.view(this.week);
+};
+
+Calendar.prototype.weekNext = function () {
+  this.timestamp += (86400 * 7);
+  this.week += 1;
+  this.view(this.week);
+};

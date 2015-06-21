@@ -20,6 +20,10 @@ h3 {
     text-align: center;
 }
 
+h3 span {
+    cursor: pointer;
+}
+
 /* Text colour */
 th {
     color: red;

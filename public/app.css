@@ -50,6 +50,7 @@ tbody tr td:nth-child(1) {
     color: #80b8ff;
 }
 
-tbody tr.active-hour td:nth-child(1) {
+tbody tr.active-hour td:nth-child(1) span {
+    color: #ffffff !important;
     font-weight: bold;
 }

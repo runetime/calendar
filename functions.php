@@ -1,10 +1,19 @@
 <?php
 
+date_default_timezone_set('GMT');
+
 function canEdit($level) {
     $allowedString = env('AUTHORIZED');
     $authorized = explode(',', $allowedString);
 
     return in_array($level, $authorized);
+}
+
+function canEditAll($level) {
+	$allowedString = env('AUTHORIZED_ALL');
+	$authorized = explode(',', $allowedString);
+
+	return in_array($level, $authorized);
 }
 
 function databaseQuery($query) {
@@ -29,20 +38,20 @@ function dd($val) {
     die(var_dump($val));
 }
 
+function dec($string, $method, $key, $sub) {
+    $decrypted = base64_decode($string);
+
+    return openssl_decrypt($decrypted, $method, $key, 0, $sub);
+}
+
+function enc($string, $method, $key, $sub) {
+    $encrypted = openssl_encrypt($string, $method, $key, 0, $sub);
+    $output = base64_encode($encrypted);
+
+    return $output;
+}
+
 function encrypter($action, $string) {
-    $decrypt = function ($string, $method, $key, $sub) {
-        $decrypted = base64_decode($string);
-
-        return openssl_decrypt($decrypted, $method, $key, 0, $sub);
-    };
-
-    $encrypt = function ($string, $method, $key, $sub) {
-        $encrypted = openssl_encrypt($string, $method, $key, 0, $sub);
-        $output = base64_encode($encrypted);
-
-        return $output;
-    };
-
     $output = false;
 
     $method = env('ENCRYPTION_METHOD');
@@ -57,11 +66,11 @@ function encrypter($action, $string) {
 
     switch ($action) {
         case 'encrypt':
-            $output = $encrypt($string, $method, $key, $sub);
+            $output = enc($string, $method, $key, $sub);
 
             break;
         case 'decrypt':
-            $output = $decrypt($string, $method, $key, $sub);
+            $output = dec($string, $method, $key, $sub);
 
             break;
     }
@@ -81,7 +90,7 @@ function env($key) {
 
         // Check if this is equal to the $key that's wanted.
         if ($lineArray[0] == $key) {
-            $value = $lineArray[1];
+            $value = rtrim($lineArray[1]);
 
             // Now let's skip the rest.
             break;

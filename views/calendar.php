@@ -5,7 +5,7 @@
     <script src='vendor/jquery.js'></script>
   </head>
   <body>
-    <table can-edit='<?=$canEdit ? 'y' : 'n'; ?>'>
+    <table border='1' can-edit='<?=$canEdit ? 'y' : 'n'; ?>'>
       <thead>
         <tr>
           <th>&nbsp;</th>
@@ -22,11 +22,23 @@
 <?php foreach ($hours as $hour => $hourInfo): ?>
         <tr>
           <td>
+  <?php if ($currentHour == $hour): ?>
+            <b>
+  <?php endif; ?>
             <?=str_pad($hour, 2, '0', STR_PAD_LEFT); ?>:00
+  <?php if ($currentHour == $hour): ?>
+            </b>
+  <?php endif; ?>
           </td>
   <?php for ($i = 0; $i <= 6; $i++): ?>
           <td>
+    <?php if ($currentHour == $hour): ?>
+            <b>
+    <?php endif; ?>
             <span onclick='claim(this, <?=$hour; ?>, <?=$i; ?>)'><?=$hourInfo[$i]; ?></span>
+    <?php if ($currentHour == $hour): ?>
+            </b>
+    <?php endif; ?>
           </td>
   <?php endfor; ?>
         </tr>

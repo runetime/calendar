@@ -19,4 +19,6 @@ $canEdit = canEdit($level);
 
 $hours = getHours();
 
+$currentHour = date('H');
+
 require(__DIR__ . '/../views/calendar.php');

@@ -11,3 +11,16 @@ th {
     text-align: center;
     width: 12.5%;
 }
+
+/* Text colour */
+th {
+    color: red;
+}
+
+td {
+    color: orange;
+}
+
+tbody tr td:nth-child(1) {
+    color: #80b8ff;
+}

@@ -59,10 +59,10 @@ $claimed = mysql_fetch_object(mysql_query($claimedQuery));
 // Check if someone claimed the hour.
 if (!empty($claimed)) {
     // If they are the person who claimed it, let's remove them for the hour.
-    if ($claimed->dj_name === $user) {
+    if ($claimed->dj_name === $user || canEditAll($level)) {
         $query = <<<QUERY
 DELETE FROM `radio_history`
-WHERE `week`=$week and `day`=$day and `hour`=$hour and `dj_name`='$user'
+WHERE `week`=$week and `day`=$day and `hour`=$hour
 QUERY;
 
         $results = mysql_query($query, $link);

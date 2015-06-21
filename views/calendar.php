@@ -42,12 +42,12 @@
     </table>
     <script>
       var cal = new Calendar();
-      cal.can_edit = <?=$canEdit ? 'true' : 'false'; ?>;
-      cal.level = <?=$level; ?>;
-      cal.timestamp = <?=time();?>;
-      cal.user = '<?=$user; ?>';
-      cal.user_encrypted = '<?=$userEncrypted; ?>';
-      cal.week = <?=$week;?>;
+      cal.can_edit = <?=$canEdit ? 'true' : 'false'?>;
+      cal.level = <?=$level?>;
+      cal.timestamp = <?=time()?>;
+      cal.user = '<?=$user?>';
+      cal.user_encrypted = '<?=$userEncrypted?>';
+      cal.week = <?=$week?>;
 
       cal.view(cal.week);
     </script>

@@ -42,7 +42,7 @@ if ($hour > 23 || $hour < 0) {
 // :( = Someone else already claimed the hour.
 // D: = There was a SQL error.
 
-$link = mysql_connect('127.0.0.1', env('DB_USER'), env('DB_PASS'), env('DB_NAME'));
+$link = mysql_connect(env('DB_HOST'), env('DB_USER'), env('DB_PASS'), env('DB_NAME'));
 mysql_select_db(env('DB_NAME'));
 
 // Set the relevant date information.

@@ -20,7 +20,7 @@ function databaseQuery($query) {
     static $link = null;
 
     if (is_null($link)) {
-        $link = mysqli_connect('127.0.0.1', env('DB_USER'), env('DB_PASS'), env('DB_NAME'));
+        $link = mysqli_connect(env('DB_HOST'), env('DB_USER'), env('DB_PASS'), env('DB_NAME'));
     }
 
     $results = $link->query($query);

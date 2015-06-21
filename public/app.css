@@ -12,6 +12,10 @@ th {
     width: 12.5%;
 }
 
+h3 {
+    text-align: center;
+}
+
 /* Text colour */
 th {
     color: red;

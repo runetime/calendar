@@ -5,6 +5,9 @@
     <script src='vendor/jquery.js'></script>
   </head>
   <body>
+    <h3>
+      Week of <?=$mondayMonth?> <?=$monday?> - <?=$sundayMonth?> <?=$sunday?>, <?=$year?>
+    </h3>
     <table border='1' can-edit='<?=$canEdit ? 'y' : 'n'; ?>'>
       <thead>
         <tr>

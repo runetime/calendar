@@ -9,7 +9,6 @@ table[can-edit='y'] td span {
 
 tr.active-hour td span {
     color: #ffffff !important;
-    font-weight: bold;
 }
 
 td,
@@ -21,9 +20,12 @@ th {
 td.current-hour {
     background: orange;
     color: #ffffff;
+    font-weight: bold;
 }
 
 h3 {
+    color: white;
+    font-family: Arial;
     text-align: center;
 }
 

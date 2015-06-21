@@ -61,6 +61,10 @@
       cal.week = <?=$week?>;
 
       cal.view(cal.week);
+
+      cal.update_interval = setInterval(function () {
+        cal.view(cal.week);
+      }, 300000);
     </script>
   </body>
 </html>

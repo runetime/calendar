@@ -5,6 +5,7 @@ Calendar.prototype.can_edit = false;
 Calendar.prototype.can_edit = false,
 Calendar.prototype.level = 0;
 Calendar.prototype.timestamp = 0;
+Calendar.prototype.update_interval = null;
 Calendar.prototype.user = '';
 Calendar.prototype.user_encrypted = '';
 Calendar.prototype.week = 0;

@@ -69,10 +69,9 @@ Calendar.prototype.view = function (week) {
 
         $(selector).html(cell);
 
-        // Week of <?=$mondayMonth?> <?=$monday?> - <?=$sundayMonth?> <?=$sunday?>, <?=$year?>
-        var header = 'Week of ' + info.monday_month + ' ' + info.monday;
+        var header = 'Week of ' + info.monday + ' of ' + info.monday_month;
         header += ' - ';
-        header += info.sunday_month + ' ' + info.sunday;
+        header += info.sunday + ' of ' + info.sunday_month;
         header += ', ' + info.year;
 
         $('#header-info').html(header);

@@ -16,6 +16,7 @@ if (isset($_POST['user'])) {
     die('A user must be given.');
 }
 
+$level = encrypter('decrypt', $level);
 $user = encrypter('decrypt', $userEncrypted);
 
 if (!canEditAll($level)) {

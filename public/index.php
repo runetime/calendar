@@ -15,6 +15,7 @@ if (isset($_GET['user'])) {
 }
 
 $user = encrypter('decrypt', $userEncrypted);
+$level = ecncrypter('decrypt', $level);
 $canEdit = canEdit($level);
 $canEditAll = canEditAll($level);
 

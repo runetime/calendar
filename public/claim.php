@@ -49,15 +49,15 @@ if ($week > 52 || $week < 0) {
 // :( = Someone else already claimed the hour.
 // D: = There was a SQL error.
 
-$link = mysql_connect(env('DB_HOST'), env('DB_USER'), env('DB_PASS'), env('DB_NAME'));
-mysql_select_db(env('DB_NAME'));
+$link = mysqli_connect(env('DB_HOST'), env('DB_USER'), env('DB_PASS'), env('DB_NAME'));
+mysqli_select_db(env('DB_NAME'));
 
 // Check if the hour has already been claimed.
 $claimedQuery = '
 SELECT `dj_name`
 FROM `radio_history`
 WHERE `week`=' . $week . ' and `day`=' . $day . ' and `hour`=' . $hour;
-$claimed = mysql_fetch_object(mysql_query($claimedQuery));
+$claimed = mysqli_fetch_object(mysqli_query($link, $claimedQuery));
 
 // Check if someone claimed the hour.
 if (!empty($claimed)) {
@@ -68,7 +68,7 @@ DELETE FROM `radio_history`
 WHERE `week`=$week and `day`=$day and `hour`=$hour
 QUERY;
 
-        $results = mysql_query($query, $link);
+        $results = mysqli_query($link, $query);
 
         die($results ? ':|' : 'D:');
     } else {
@@ -85,6 +85,6 @@ VALUES
 ($week, $day, $hour, '$user')
 QUERY;
 
-$results = mysql_query($query, $link);
+$results = mysqli_query($link, $query);
 
 die($results ? ':)' : 'D:');

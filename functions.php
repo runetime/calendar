@@ -23,11 +23,11 @@ function databaseQuery($query) {
         $link = mysqli_connect(env('DB_HOST'), env('DB_USER'), env('DB_PASS'), env('DB_NAME'));
     }
 
-    $results = $link->query($query);
+    $results = mysqli_query($link, $query);
 
     $resultList = [];
 
-    while ($result = mysqli_fetch_object($results)) {
+    while ($result = @mysqli_fetch_object($results)) {
         $resultList[] = $result;
     }
 

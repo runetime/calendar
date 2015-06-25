@@ -56,7 +56,7 @@
     <script>
       var cal = new Calendar();
       cal.can_edit = <?=$canEdit ? 'true' : 'false'?>;
-      cal.level = <?=$level?>;
+      cal.level = '<?=$levelEncrypted?>';
       cal.timestamp = <?=time()?>;
       cal.user = '<?=$user?>';
       cal.user_encrypted = '<?=$userEncrypted?>';

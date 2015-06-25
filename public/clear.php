@@ -5,7 +5,7 @@ error_reporting(0);
 require(__DIR__ . '/../functions.php');
 
 if (isset($_POST['level'])) {
-    $level = $_POST['level'];
+    $levelEncrypted = $_POST['level'];
 } else {
     die('A level must be given.');
 }
@@ -16,7 +16,7 @@ if (isset($_POST['user'])) {
     die('A user must be given.');
 }
 
-$level = encrypter('decrypt', $level);
+$level = encrypter('decrypt', $levelEncrypted);
 $user = encrypter('decrypt', $userEncrypted);
 
 if (!canEditAll($level)) {

@@ -3,7 +3,7 @@
 require(__DIR__ . '/../functions.php');
 
 if (isset($_GET['level'])) {
-    $level = $_GET['level'];
+    $levelEncrypted = $_GET['level'];
 } else {
     die('A level must be given.');
 }
@@ -15,7 +15,7 @@ if (isset($_GET['user'])) {
 }
 
 $user = encrypter('decrypt', $userEncrypted);
-$level = ecncrypter('decrypt', $level);
+$level = encrypter('decrypt', $levelEncrypted);
 $canEdit = canEdit($level);
 $canEditAll = canEditAll($level);
 

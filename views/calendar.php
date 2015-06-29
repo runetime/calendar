@@ -6,9 +6,11 @@
     <script src='js/calendar.js?<?=filemtime('js/calendar.js')?>'></script>
   </head>
   <body>
+<?php if ($canEditAll): ?>
     <h3 id='week-header'>
       <span href='#' onclick='cal.weekPrevious();'>&larr;</span> <span id='header-info'></span> <span href='#' onclick='cal.weekNext();'>&rarr;</span>
     </h3>
+<?php endif; ?>
     <table border='1' can-edit='<?=$canEdit ? 'y' : 'n'; ?>'>
       <thead>
         <tr>
